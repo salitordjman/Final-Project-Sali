@@ -5,10 +5,3 @@ mongoose.connect(
     `mongodb+srv://salitor:${keys.password}@salitur.xfafu.mongodb.net/final-project-sali?retryWrites=true&w=majority`,
   {}
 );
-// mongoose.connect(
-//   `mongodb+srv://salitor:${keys.password}@salitur.xfafu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
-//   {}
-// );
-// mongoose.connect("mongodb://127.0.0.1:27017/bank-api-mongoose-react-w-p", {
-//   useNewUrlParser: true,
-// });

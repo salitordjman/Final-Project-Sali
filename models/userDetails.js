@@ -1,40 +1,39 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 
-const detailsSchema = mongoose.Schema({
-  DateAdded: {
-    type: Date,
-    default: Date(),
-  },
-  isActive: {
-    type: Boolean,
-    default: true,
-  },
-});
-const userDetails = mongoose.model("userDetails", {
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    minLength: 2,
-  },
-  cash: {
-    type: Number,
-    default: 0,
-    min: 0,
-  },
-  credit: {
-    type: Number,
-    default: 0,
-    min: 0,
-  },
-  passportId: {
-    type: String,
-    required: true,
-    unique: true,
     trim: true,
-    minLength: 7,
-    maxLength: 10,
   },
-  details: detailsSchema,
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true,
+    lowercase: true,
+    validate(value) {
+      if (!validator.isEmail(value)) {
+        throw new Error("Email is invalid");
+      }
+    },
+  },
+  password: {
+    type: String,
+    trim: true,
+    required: true,
+    minLength: 6,
+  },
+  picture: {
+    type: String,
+  },
+  DateAdded: {
+    type: Date,
+    default: Date.now,
+  },
 });
+
+const userDetails = mongoose.model("user", userSchema);
 
 module.exports = userDetails;

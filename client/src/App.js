@@ -1,7 +1,7 @@
 // import { useState } from "react";
 // import myApi from "./api/Api";
 
-function App() {
+const App = () => {
   // const [allUsers, setAllUsers] = useState("");
   // const [toggleAllUsers, setToggleAllUsers] = useState(false);
   // const [user, setUser] = useState("");
@@ -47,7 +47,7 @@ function App() {
   // };
   return (
     <div>
-      <h1>Hello world</h1>
+      <h1>Hello ngbnvworld</h1>
 
       {/* <button onClick={getReq}>get all users name</button>
       <p>{toggleAllUsers && allUsers}</p>
@@ -65,6 +65,6 @@ function App() {
       <p>{toggleUserCredit && userCredit}</p> */}
     </div>
   );
-}
+};
 
 export default App;
