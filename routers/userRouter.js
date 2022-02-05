@@ -9,11 +9,6 @@ const jwt = require("jsonwebtoken");
 router.post("/", async (req, res) => {
   const newUser = new userDetails(req.body);
   try {
-    newUser.picture = await gravatar.url(newUser.email, {
-      s: "200",
-      r: "pg",
-      d: "mm",
-    });
     const salt = await bcrypt.genSalt(10);
     newUser.password = await bcrypt.hash(newUser.password, salt);
     await newUser.save();

@@ -1,7 +1,26 @@
 // import { useState } from "react";
 // import myApi from "./api/Api";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import Navbar from "./components/layout/Navbar";
+import Landing from "./components/layout/Landing";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+
+import { Provider } from "react-redux";
+import store from "./store";
+import { loadUser } from "./actions/auth";
+import setAuthToken from "./utils/setAuthToken";
 
 const App = () => {
+  useEffect(() => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+
+    store.dispatch(loadUser());
+  }, []);
   // const [allUsers, setAllUsers] = useState("");
   // const [toggleAllUsers, setToggleAllUsers] = useState(false);
   // const [user, setUser] = useState("");
@@ -46,24 +65,31 @@ const App = () => {
   //   setToggleUserCredit(!toggleUserCredit);
   // };
   return (
-    <div>
-      <h1>Hello ngbnvworld</h1>
+    <Provider store={store}>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="register" element={<Register />} />
 
-      {/* <button onClick={getReq}>get all users name</button>
+          <Route path="login" element={<Login />} />
+          {/* <button onClick={getReq}>get all users name</button>
       <p>{toggleAllUsers && allUsers}</p>
       <div>
-        ID:
-        <input onChange={inputUserId} value={userId}></input>
+      ID:
+      <input onChange={inputUserId} value={userId}></input>
       </div>
       <button onClick={getReq1}>get user by ID</button>
       <p>{toggleUser && user}</p>
       <div>
-        Update credit to:
-        <input onChange={inputUpdateCredit} value={updateCredit}></input>
+      Update credit to:
+      <input onChange={inputUpdateCredit} value={updateCredit}></input>
       </div>
       <button onClick={getUpdateCredit}>get Update credit</button>
-      <p>{toggleUserCredit && userCredit}</p> */}
-    </div>
+    <p>{toggleUserCredit && userCredit}</p> */}
+        </Routes>
+      </Router>
+    </Provider>
   );
 };
 
