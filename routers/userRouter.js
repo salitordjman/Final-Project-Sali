@@ -1,5 +1,5 @@
 const express = require("express");
-const keys = require("../config/keys");
+// const keys = require("../config/keys");
 const userDetails = require("../models/userDetails");
 const router = new express.Router();
 const gravatar = require("gravatar");

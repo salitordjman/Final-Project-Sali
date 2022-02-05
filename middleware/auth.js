@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
-const keys = require("../config/keys");
+// const keys = require("../config/keys");
+// pjwt: process.env.pjwt,
 
 module.exports = (req, res, next) => {
   const token = req.header("x-auth-token");
