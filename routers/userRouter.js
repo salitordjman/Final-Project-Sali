@@ -17,10 +17,16 @@ router.post("/", async (req, res) => {
         id: newUser.id,
       },
     };
-    jwt.sign(payload, keys.jwt, { expiresIn: "100 days" }, (err, token) => {
-      if (err) throw err;
-      res.status(201).send({ token });
-    });
+    jwt.sign(
+      payload,
+      "thisismyproject",
+      { expiresIn: "100 days" },
+      (err, token) => {
+        // jwt.sign(payload, keys.pjwt, { expiresIn: "100 days" }, (err, token) => {
+        if (err) throw err;
+        res.status(201).send({ token });
+      }
+    );
   } catch (e) {
     res.status(500).send({ Error: e.message });
   }
