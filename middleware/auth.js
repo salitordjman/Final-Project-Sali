@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
     throw new Error("No token");
   }
   try {
-    const decoded = jwt.verify(token, keys.jwt);
+    const decoded = jwt.verify(token, "thisismyproject");
     req.user = decoded.user;
     next();
   } catch (e) {
