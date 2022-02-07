@@ -1,5 +1,4 @@
 import myApi from "../api/Api";
-
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -34,7 +33,7 @@ export const register = (formData) => async (dispatch) => {
     });
     dispatch(loadUser());
   } catch (e) {
-    alert(e);
+    dispatch(alert(e));
     dispatch({
       type: REGISTER_FAIL,
     });
@@ -52,7 +51,7 @@ export const login = (formData) => async (dispatch) => {
     });
     dispatch(loadUser());
   } catch (e) {
-    alert(e);
+    dispatch(alert(e));
     dispatch({
       type: LOGIN_FAIL,
     });

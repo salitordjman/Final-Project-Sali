@@ -31,6 +31,7 @@ router.post("/", async (req, res) => {
         id: myUser.id,
       },
     };
+
     jwt.sign(payload, keys.pjwt, { expiresIn: "100 days" }, (err, token) => {
       if (err) throw err;
       res.status(201).send({ token });
