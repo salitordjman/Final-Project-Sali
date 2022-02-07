@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import DashboardActions from "./DashboardActions";
+import SettingsActions from "./SettingsActions";
 import { getCurrentProfile, deleteAccount } from "../../actions/profile";
 
-const Dashboard = ({
+const Settings = ({
   getCurrentProfile,
   deleteAccount,
   auth: { user },
@@ -17,13 +17,13 @@ const Dashboard = ({
 
   return (
     <section>
-      <h1>Dashboard</h1>
+      <h1>Settings</h1>
       <p>
         <i /> Welcome {user && user.name}
       </p>
       {profile !== null ? (
         <>
-          <DashboardActions />
+          <SettingsActions />
 
           <div>
             <button onClick={() => deleteAccount()}>
@@ -41,7 +41,7 @@ const Dashboard = ({
   );
 };
 
-Dashboard.propTypes = {
+Settings.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
@@ -54,5 +54,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
-  Dashboard
+  Settings
 );

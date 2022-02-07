@@ -72,7 +72,7 @@ export const createProfile =
       dispatch(alert(edit ? "Profile Updated" : "Profile Created"));
 
       if (!edit) {
-        navigate("/dashboard");
+        navigate("/settings");
       }
     } catch (e) {
       alert(e);

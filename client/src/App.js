@@ -5,7 +5,7 @@ import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-import Dashboard from "./components/dashboard/Dashboard";
+import Settings from "./components/Settings/Settings";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import ProfileForm from "./components/profile-forms/ProfileForm";
 import Profiles from "./components/profiles/Profiles";
@@ -44,8 +44,8 @@ const App = () => {
           <Route path="profiles" element={<Profiles />} />
           <Route path="profile/:id" element={<Profile />} />
           <Route
-            path="dashboard"
-            element={<PrivateRoute component={Dashboard} />}
+            path="settings"
+            element={<PrivateRoute component={Settings} />}
           />
           <Route
             path="create-profile"

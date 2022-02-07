@@ -28,7 +28,7 @@ const Login = ({ login, isAuthenticated }) => {
     //   }
   };
   if (isAuthenticated) {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/settings" />;
   }
   return (
     <section>

@@ -221,7 +221,7 @@ const ProfileForm = ({
         )}
 
         <input type="submit" />
-        <Link to="/dashboard">Go Back</Link>
+        <Link to="/settings">Go Back</Link>
       </form>
     </section>
   );
