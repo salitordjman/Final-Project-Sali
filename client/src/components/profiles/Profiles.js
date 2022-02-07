@@ -11,23 +11,19 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   }, [getProfiles]);
 
   return (
-    <section>
+    <section className="container">
       {loading ? (
         <Spinner />
       ) : (
         <div>
           <h1>Profiles</h1>
-          <p>
-            <i /> Browse and connect with Profiles
-          </p>
-          <div>
-            {console.log(profiles)}
+          <div className="profiles">
             {profiles.length > 0 ? (
               profiles.map((profile) => (
                 <ProfileItem key={profile._id} profile={profile} />
               ))
             ) : (
-              <h4>No profiles found...</h4>
+              <h2>No profiles found...</h2>
             )}
           </div>
         </div>

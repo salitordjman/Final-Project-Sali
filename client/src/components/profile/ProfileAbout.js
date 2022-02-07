@@ -8,19 +8,18 @@ const ProfileAbout = ({
     user: { name },
   },
 }) => (
-  <div>
+  <div className="profile-about border-gold">
     {bio && (
       <>
         <h2>{name.trim().split(" ")[0]}s Bio</h2>
         <p>{bio}</p>
+        <div className="line" />
       </>
     )}
-    <h2>hobbies Set</h2>
-    <div>
+    <h2>Hobbies</h2>
+    <div className="hobbies">
       {hobbies.map((hob, index) => (
-        <div key={index}>
-          <i /> {hob}
-        </div>
+        <div key={index}>{hob}</div>
       ))}
     </div>
   </div>

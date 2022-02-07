@@ -9,17 +9,18 @@ const ProfileTop = ({
     location,
     social,
     education,
-    user: { name, picture },
+    user: { name },
+    // user: { name, picture },
   },
 }) => {
   return (
-    <div>
-      <img src={picture} alt="" />
+    <div className="profile-top border-gold">
+      {/* <img src={picture} alt="" /> */}
       <h1>{name}</h1>
       <p>{status}</p>
-      <p>{formatDate(birthday)}</p>
-      <p>{location ? <span>{location}</span> : null}</p>
-      <p>{education ? <span>{education}</span> : null}</p>
+      <p>Birthday: {formatDate(birthday)}</p>
+      <p>{location ? <span>Location: {location}</span> : null}</p>
+      <p>{education ? <span>Education: {education}</span> : null}</p>
       <div>
         {social
           ? Object.entries(social)
@@ -31,7 +32,10 @@ const ProfileTop = ({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i></i>
+                  <i
+                    style={{ margin: "1.5rem 0.5rem" }}
+                    className={`fab fa-${key} fa-2x`}
+                  ></i>
                 </a>
               ))
           : null}

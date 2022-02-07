@@ -14,7 +14,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
   }, [getProfileById, id]);
 
   return (
-    <section>
+    <section className="container">
       {profile === null ? (
         <Spinner />
       ) : (
@@ -23,9 +23,12 @@ const Profile = ({ getProfileById, profile: { profile }, auth }) => {
           {auth.isAuthenticated &&
             auth.loading === false &&
             auth.user._id === profile.user._id && (
-              <Link to="/edit-profile">Edit Profile</Link>
+              <Link to="/edit-profile" style={{ marginLeft: "5em" }}>
+                {" "}
+                Edit Profile
+              </Link>
             )}
-          <div>
+          <div className="profile-grid">
             <ProfileTop profile={profile} />
             <ProfileAbout profile={profile} />
           </div>

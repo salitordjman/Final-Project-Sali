@@ -73,18 +73,17 @@ const ProfileForm = ({
   };
 
   return (
-    <section>
+    <section className="container">
       <h1>{creatingProfile ? "Create Your Profile" : "Edit Your Profile"}</h1>
-      <p>
-        <i />
+      <h3>
         {creatingProfile
-          ? ` Let's get some information to make your`
+          ? ` Let's get some information to make your profile`
           : " Add some changes to your profile"}
-      </p>
-      <small>* = required field</small>
+      </h3>
+      <p>* required field</p>
       <form onSubmit={onSubmit}>
         <div>
-          <small>Birthday*</small>
+          <h5>* Birthday *</h5>
           <input
             type="date"
             placeholder="* birthday"
@@ -94,7 +93,7 @@ const ProfileForm = ({
           />
         </div>
         <div>
-          <small>Your City & State</small>
+          <h5>Your City & State</h5>
           <input
             type="text"
             placeholder="Location"
@@ -105,17 +104,17 @@ const ProfileForm = ({
         </div>
         <div>
           <select name="status" value={status} onChange={onChange}>
-            <option>* Select your Status</option>
+            <option>* Select your Status *</option>
             <option value="Single">Single</option>
             <option value="In a relationship">In a relationship</option>
           </select>
         </div>
 
         <div>
-          <small>* hobbies</small>
+          <h5>* hobbies *</h5>
           <input
             type="text"
-            placeholder="* Hobbies"
+            placeholder="Hobbies"
             name="hobbies"
             value={hobbies}
             onChange={onChange}
@@ -124,6 +123,8 @@ const ProfileForm = ({
         <div>
           <div>say something about yourself</div>
           <textarea
+            cols="40"
+            rows="2"
             placeholder="A short about yourself"
             name="bio"
             value={bio}
@@ -132,7 +133,7 @@ const ProfileForm = ({
         </div>
 
         <div>
-          <small>Your education</small>
+          <h5>Your education</h5>
           <input
             type="text"
             placeholder="education"
@@ -144,6 +145,7 @@ const ProfileForm = ({
 
         <div>
           <button
+            className="btn"
             onClick={() => toggleSocialInputs(!displaySocialInputs)}
             type="button"
           >
@@ -155,7 +157,6 @@ const ProfileForm = ({
         {displaySocialInputs && (
           <>
             <div>
-              <i />
               <input
                 type="text"
                 placeholder="Youtube URL"
@@ -166,7 +167,6 @@ const ProfileForm = ({
             </div>
 
             <div>
-              <i />
               <input
                 type="text"
                 placeholder="Facebook URL"
@@ -177,7 +177,6 @@ const ProfileForm = ({
             </div>
 
             <div>
-              <i />
               <input
                 type="text"
                 placeholder="Linkedin URL"
@@ -188,7 +187,6 @@ const ProfileForm = ({
             </div>
 
             <div>
-              <i />
               <input
                 type="text"
                 placeholder="Instagram URL"
@@ -198,7 +196,6 @@ const ProfileForm = ({
               />
             </div>
             <div>
-              <i />
               <input
                 type="text"
                 placeholder="Github URL"
@@ -208,7 +205,6 @@ const ProfileForm = ({
               />
             </div>
             <div>
-              <i />
               <input
                 type="text"
                 placeholder="Tiktok URL"
@@ -220,8 +216,10 @@ const ProfileForm = ({
           </>
         )}
 
-        <input type="submit" />
-        <Link to="/settings">Go Back</Link>
+        <input type="submit" style={{ background: "gold" }} />
+        <h2>
+          <Link to="/settings">Go Back</Link>
+        </h2>
       </form>
     </section>
   );

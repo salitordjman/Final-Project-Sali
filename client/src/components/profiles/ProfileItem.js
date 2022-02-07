@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import formatDate from "../../utils/formatDate";
 
 const ProfileItem = ({
   profile: {
-    user: { _id, name, picture },
+    user: { _id, name },
+    // user: { _id, name, picture },
     status,
     birthday,
     location,
@@ -12,21 +14,19 @@ const ProfileItem = ({
   },
 }) => {
   return (
-    <div>
-      <img src={picture} alt="" />
+    <div className="profile border-gold">
+      {/* <img src={picture} alt="" /> */}
       <div>
         <h2>{name}</h2>
-        <p>
-          {status} {birthday && <span> at {birthday}</span>}
-        </p>
-        <p>{location && <span>{location}</span>}</p>
+        <p>{status}</p>
+        <p>Birthday: {formatDate(birthday)}</p>
+        <p>{location && <span>Location: {location}</span>}</p>
         <Link to={`/profile/${_id}`}>View Profile</Link>
       </div>
       <ul>
+        Hobbies:
         {hobbies.slice(0, 4).map((hobb, index) => (
-          <li key={index}>
-            <i /> {hobb}
-          </li>
+          <li key={index}>{hobb}</li>
         ))}
       </ul>
     </div>

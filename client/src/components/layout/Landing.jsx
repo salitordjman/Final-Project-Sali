@@ -9,7 +9,7 @@ const Landing = ({ isAuthenticated }) => {
   }
 
   return (
-    <section>
+    <section className="landing">
       <div>
         <div>
           <h1>RhinoNet</h1>

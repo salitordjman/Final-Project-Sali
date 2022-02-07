@@ -40,7 +40,7 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
   return (
     <nav className="navbar">
       <Link to="/">
-        <img src={logo} alt="logo" />
+        <img className="logo" src={logo} alt="logo" />
       </Link>
       {/* <Link to="/">🦏RhinoNet</Link> */}
 

@@ -16,24 +16,25 @@ const Settings = ({
   }, [getCurrentProfile]);
 
   return (
-    <section>
+    <section className="landing">
       <h1>Settings</h1>
-      <p>
-        <i /> Welcome {user && user.name}
-      </p>
+      <h3>Hello {user && user.name}</h3>
       {profile !== null ? (
         <>
           <SettingsActions />
 
           <div>
-            <button onClick={() => deleteAccount()}>
+            <button className="btn" onClick={() => deleteAccount()}>
               <i /> Delete My Account
             </button>
           </div>
         </>
       ) : (
         <>
-          <p>You have not yet setup a profile, please add some info</p>
+          <h4>
+            You have not yet creating a profile, please fill in some details
+            about yourself
+          </h4>
           <Link to="/create-profile">Create Profile</Link>
         </>
       )}
