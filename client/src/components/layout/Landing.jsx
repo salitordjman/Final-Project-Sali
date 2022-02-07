@@ -13,11 +13,14 @@ const Landing = ({ isAuthenticated }) => {
       <div>
         <div>
           <h1>RhinoNet</h1>
-          <p>Create a new</p>
-          <div>
+          <h3>
+            Collaborative social network, let's start sharing your creativity
+          </h3>
+          <h2>
             <Link to="/register">Sign Up</Link>
+            {"\xa0\xa0\xa0\xa0\xa0"}
             <Link to="/login">Login</Link>
-          </div>
+          </h2>
         </div>
       </div>
     </section>

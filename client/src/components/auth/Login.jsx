@@ -31,7 +31,7 @@ const Login = ({ login, isAuthenticated }) => {
     return <Navigate to="/settings" />;
   }
   return (
-    <section>
+    <section className="container">
       <h1>Sign In</h1>
       <form onSubmit={onSubmit}>
         <div>
@@ -55,10 +55,10 @@ const Login = ({ login, isAuthenticated }) => {
             minLength={6}
           />
         </div>
-        <input type="submit" value="Login" />
+        <input className="btn" type="submit" value="Login" />
       </form>
       <h3>
-        Don't have an account? <Link to="/register">Sign Up</Link>
+        <Link to="/register">Sign Up</Link> instead?
       </h3>
     </section>
   );

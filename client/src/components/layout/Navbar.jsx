@@ -38,7 +38,7 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
     </ul>
   );
   return (
-    <nav>
+    <nav className="navbar">
       <Link to="/">
         <img src={logo} alt="logo" />
       </Link>

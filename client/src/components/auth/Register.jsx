@@ -38,9 +38,8 @@ const Register = ({ register, isAuthenticated }) => {
     return <Navigate to="/settings" />;
   }
   return (
-    <section>
+    <section className="container">
       <h1>Sign Up</h1>
-      <h3>Create Your Account</h3>
       <form onSubmit={onSubmit}>
         <div>
           <input
@@ -54,7 +53,7 @@ const Register = ({ register, isAuthenticated }) => {
           />
         </div>
         <div>
-          Picture
+          Pick your pic
           <input
             type="file"
             id="img"
@@ -63,6 +62,7 @@ const Register = ({ register, isAuthenticated }) => {
             value={picture}
             onChange={onChange}
             accept="image/*"
+            className="input-img"
           />
         </div>
         <div>
@@ -99,10 +99,10 @@ const Register = ({ register, isAuthenticated }) => {
             required
           />
         </div>
-        <input type="submit" value="Register" />
+        <input className="btn" type="submit" value="Register" />
       </form>
       <h3>
-        Already have an account? <Link to="/login">Sign In</Link>
+        <Link to="/login">Sign In</Link> instead?
       </h3>
     </section>
   );
