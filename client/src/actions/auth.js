@@ -41,8 +41,6 @@ export const register = (formData) => async (dispatch) => {
 };
 
 export const login = (formData) => async (dispatch) => {
-  console.log(formData);
-
   try {
     const res = await myApi.post("/auth", formData);
     dispatch({

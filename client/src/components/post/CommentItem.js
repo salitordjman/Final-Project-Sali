@@ -2,25 +2,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import formatDate from '../../utils/formatDate';
+import formatDate from "../../utils/formatDate";
 import { deleteComment } from "../../actions/post";
 
 const CommentItem = ({
   postId,
-  comment: { _id, text, name, picture, user, date },
+  comment: { _id, text, name, user, date },
+  // comment: { _id, text, name, picture, user, date },
   auth,
   deleteComment,
 }) => (
-  <div>
+  <div className="container post border-gold">
     <div>
       <Link to={`/profile/${user}`}>
-        <img src={picture} alt="" />
+        {/* <img src={picture} alt="" /> */}
         <h4>{name}</h4>
       </Link>
     </div>
     <div>
       <p>{text}</p>
-      <p>Posted on {formatDate(date)}</p>
+      <p className="post-date">Posted on {formatDate(date)}</p>
       {!auth.loading && user === auth.user._id && (
         <button onClick={() => deleteComment(postId, _id)} type="button">
           <i />

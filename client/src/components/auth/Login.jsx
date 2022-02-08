@@ -21,7 +21,6 @@ const Login = ({ login, isAuthenticated }) => {
     login(formData);
     //   try {
     //     const res = await myApi.post("/auth", formData);
-    //     console.log(res.data);
     //     alert("User Login successfully");
     //   } catch (e) {
     //     alert(e);

@@ -17,7 +17,7 @@ const Post = ({ getPost, post: { post, loading } }) => {
   return loading || post === null ? (
     <Spinner />
   ) : (
-    <section>
+    <section className="container">
       <Link to="/posts">Back To Posts</Link>
       <PostItem post={post} showActions={false} />
       <CommentForm postId={post._id} />

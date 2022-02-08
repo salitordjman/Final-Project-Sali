@@ -75,6 +75,7 @@ export const createProfile =
         navigate("/settings");
       }
     } catch (e) {
+      // alert("e1111111");
       alert(e);
 
       dispatch({

@@ -111,7 +111,7 @@ const ProfileForm = ({
         </div>
 
         <div>
-          <h5>* hobbies *</h5>
+          <h5>* Hobbies *</h5>
           <input
             type="text"
             placeholder="Hobbies"
@@ -121,10 +121,9 @@ const ProfileForm = ({
           />
         </div>
         <div>
-          <div>say something about yourself</div>
+          <div>Say something about yourself</div>
           <textarea
-            cols="40"
-            rows="2"
+            rows="3"
             placeholder="A short about yourself"
             name="bio"
             value={bio}
@@ -146,6 +145,7 @@ const ProfileForm = ({
         <div>
           <button
             className="btn"
+            style={{ background: "green", borderRadius: "0.6rem" }}
             onClick={() => toggleSocialInputs(!displaySocialInputs)}
             type="button"
           >
@@ -216,7 +216,7 @@ const ProfileForm = ({
           </>
         )}
 
-        <input type="submit" style={{ background: "gold" }} />
+        <input type="submit" className="btn" />
         <h2>
           <Link to="/settings">Go Back</Link>
         </h2>

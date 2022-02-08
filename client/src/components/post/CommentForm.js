@@ -9,7 +9,7 @@ const CommentForm = ({ postId, addComment }) => {
   return (
     <div>
       <div>
-        <h3>Leave a Comment</h3>
+        <h3 style={{ marginBottom: "0.5rem" }}>Comment me</h3>
       </div>
       <form
         onSubmit={(e) => {
@@ -19,15 +19,17 @@ const CommentForm = ({ postId, addComment }) => {
         }}
       >
         <textarea
+          className="post-textarea"
           name="text"
-          cols="30"
-          rows="2"
+          rows="3"
           placeholder="Comment the post"
           value={text}
           onChange={(e) => setText(e.target.value)}
           required
         />
-        <input type="submit" value="Submit" />
+        <div>
+          <input type="submit" value="Comment" className="btn" />
+        </div>
       </form>
     </div>
   );

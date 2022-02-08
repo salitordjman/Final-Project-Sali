@@ -11,11 +11,8 @@ const Posts = ({ getPosts, post: { posts } }) => {
   }, [getPosts]);
 
   return (
-    <section>
+    <section className="container">
       <h1>Posts</h1>
-      <p>
-        <i /> Welcome to the community
-      </p>
       <PostForm />
       <div>
         {posts.map((post) => (

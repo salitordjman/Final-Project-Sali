@@ -10,34 +10,52 @@ const PostItem = ({
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, name, picture, user, likes, comments, date },
+  post: { _id, text, name, user, likes, comments, date },
+  // post: { _id, text, name, picture, user, likes, comments, date },
   showActions,
 }) => (
-  <div>
+  <div className="post border-gold">
     <div>
       <Link to={`/profile/${user}`}>
-        <img src={picture} alt="" />
-        <h4>{name}</h4>
+        {/* <img src={picture} alt="" /> */}
+        <h2>{name}</h2>
       </Link>
     </div>
     <div>
       <p>{text}</p>
-      <p>Posted on {formatDate(date)}</p>
+      <p className="post-date">Posted on {formatDate(date)}</p>
 
       {showActions && (
         <>
-          <button onClick={() => addLike(_id)} type="button">
-            <i /> <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
+          <button
+            className="btn-emoji"
+            onClick={() => addLike(_id)}
+            type="button"
+          >
+            <span style={{ color: "green" }}>
+              {likes.length > 0 && (
+                <span style={{ fontWeight: "bolder" }}>{likes.length}</span>
+              )}
+              <span className="fas fa-thumbs-up" />
+            </span>
           </button>
-          <button onClick={() => removeLike(_id)} type="button">
-            <i />
+          <button
+            className="btn-emoji"
+            onClick={() => removeLike(_id)}
+            type="button"
+          >
+            <span style={{ color: "red" }} className="fas fa-thumbs-down" />
           </button>
           <Link to={`/posts/${_id}`}>
-            Discussion {comments.length > 0 && <span>{comments.length}</span>}
+            📝Comments {comments.length > 0 && <span>{comments.length}</span>}
           </Link>
           {!auth.loading && user === auth.user._id && (
-            <button onClick={() => deletePost(_id)} type="button">
-              <i />
+            <button
+              className="btn-emoji"
+              onClick={() => deletePost(_id)}
+              type="button"
+            >
+              ❌
             </button>
           )}
         </>

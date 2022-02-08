@@ -7,7 +7,7 @@ const Spinner = () => (
     <img
       src={spinner}
       style={{
-        width: "300px",
+        width: "400px",
         margin: "auto",
         display: "block",
       }}
