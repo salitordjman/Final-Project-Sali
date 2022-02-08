@@ -67,7 +67,7 @@ export const deletePost = (id) => async (dispatch) => {
       payload: id,
     });
 
-    dispatch(alert("Post Removed"));
+    alert("Post Removed");
   } catch (e) {
     dispatch({
       type: POST_ERROR,
@@ -85,7 +85,7 @@ export const addPost = (formData) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(alert("Post Created"));
+    alert("Post Created");
   } catch (e) {
     dispatch({
       type: POST_ERROR,
@@ -119,7 +119,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(alert("Comment Added"));
+    alert("Comment Added");
   } catch (e) {
     dispatch({
       type: POST_ERROR,
@@ -137,7 +137,7 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
       payload: commentId,
     });
 
-    dispatch(alert("Comment Removed"));
+    alert("Comment Removed");
   } catch (e) {
     dispatch({
       type: POST_ERROR,

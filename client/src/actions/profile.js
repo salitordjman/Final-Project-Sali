@@ -17,7 +17,6 @@ export const getCurrentProfile = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (e) {
-    dispatch({ type: CLEAR_PROFILE });
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: e.response.statusText, status: e.response.status },
@@ -69,13 +68,12 @@ export const createProfile =
         payload: res.data,
       });
 
-      dispatch(alert(edit ? "Profile Updated" : "Profile Created"));
+      alert(edit ? "Profile Updated" : "Profile Created");
 
       if (!edit) {
         navigate("/settings");
       }
     } catch (e) {
-      // alert("e1111111");
       alert(e);
 
       dispatch({
@@ -93,7 +91,7 @@ export const deleteAccount = () => async (dispatch) => {
       dispatch({ type: CLEAR_PROFILE });
       dispatch({ type: ACCOUNT_DELETED });
 
-      dispatch(alert("Your account has been permanently deleted"));
+      alert("Your account has been permanently deleted");
     } catch (e) {
       dispatch({
         type: PROFILE_ERROR,

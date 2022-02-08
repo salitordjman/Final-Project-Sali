@@ -33,7 +33,7 @@ export const register = (formData) => async (dispatch) => {
     });
     dispatch(loadUser());
   } catch (e) {
-    dispatch(alert(e));
+    alert(e);
     dispatch({
       type: REGISTER_FAIL,
     });
@@ -49,7 +49,7 @@ export const login = (formData) => async (dispatch) => {
     });
     dispatch(loadUser());
   } catch (e) {
-    dispatch(alert(e));
+    alert(e);
     dispatch({
       type: LOGIN_FAIL,
     });
