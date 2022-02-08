@@ -1,5 +1,5 @@
-import { connect } from "react-redux";
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 // import myApi from "../../api/Api";
 import { register } from "../../actions/auth";
@@ -9,12 +9,13 @@ const Register = ({ register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    picture: "",
+    // picture: "",
     password: "",
     password2: "",
   });
 
-  const { name, email, picture, password, password2 } = formData;
+  const { name, email, password, password2 } = formData;
+  // const { name, email, picture, password, password2 } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -52,7 +53,7 @@ const Register = ({ register, isAuthenticated }) => {
             required
           />
         </div>
-        <div>
+        {/* <div>
           Pick your pic
           <input
             type="file"
@@ -64,7 +65,7 @@ const Register = ({ register, isAuthenticated }) => {
             accept="image/*"
             className="input-img"
           />
-        </div>
+        </div> */}
         <div>
           <input
             type="email"

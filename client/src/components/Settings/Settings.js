@@ -25,7 +25,7 @@ const Settings = ({
 
           <div>
             <button className="btn" onClick={() => deleteAccount()}>
-              <i /> Delete My Account
+              Delete My Account
             </button>
           </div>
         </>

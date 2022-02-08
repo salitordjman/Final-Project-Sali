@@ -1,6 +1,9 @@
 const express = require("express");
 const router = new express.Router();
 const auth = require("../middleware/auth");
+const normalize = require("normalize-url");
+const checkObjectId = require("../middleware/checkObjectId");
+
 const profileDetails = require("../models/profileDetails");
 const userDetails = require("../models/userDetails");
 const postDetails = require("../models/postDetails");
@@ -11,7 +14,8 @@ router.get("/me", auth, async (req, res) => {
       .findOne({
         user: req.user.id,
       })
-      .populate("user", ["name", "picture"]);
+      .populate("user", ["name"]);
+    // .populate("user", ["name", "picture"]);
 
     if (!profile) {
       return res.status(400).send("Not have a profile");
@@ -19,7 +23,7 @@ router.get("/me", auth, async (req, res) => {
 
     res.status(200).send(profile);
   } catch (e) {
-    res.status(500).send({ error: e.message });
+    res.status(500).send({ errorr: e.message });
   }
 });
 
@@ -35,6 +39,7 @@ router.post("/", auth, async (req, res) => {
     ...rest
   } = req.body;
   const profileFields = {
+    user: req.user.id,
     hobbies: Array.isArray(hobbies)
       ? hobbies
       : hobbies.split(",").map((hobby) => " " + hobby.trim()),
@@ -49,7 +54,8 @@ router.post("/", auth, async (req, res) => {
     tiktok,
   };
   for (const [key, value] of Object.entries(socialFields)) {
-    if (value && value.length > 0) socialFields[key] = value;
+    if (value && value.length > 0)
+      socialFields[key] = normalize(value, { forceHttps: true });
   }
 
   profileFields.social = socialFields;
@@ -68,28 +74,31 @@ router.post("/", auth, async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const profiles = await profileDetails
-      .find()
-      .populate("user", ["name", "picture"]);
+    const profiles = await profileDetails.find().populate("user", ["name"]);
+    // .populate("user", ["name", "picture"]);
     res.status(200).send(profiles);
   } catch (e) {
     res.status(500).send({ Error: e.message });
   }
 });
 
-router.get("/user/:_id", async ({ params: { _id } }, res) => {
-  try {
-    const profile = await profileDetails
-      .findOne({ user: _id })
-      .populate("user", ["name", "picture"]);
+router.get(
+  "/user/:user_id",
+  checkObjectId("user_id"),
+  async ({ params: { user_id } }, res) => {
+    try {
+      const profile = await profileDetails
+        .findOne({ user: user_id })
+        .populate("user", ["name"]);
+      // .populate("user", ["name", "picture"]);
+      if (!profile) return res.status(400).send("Not have a profile");
 
-    if (!profile) return res.status(400).send("Not have a profile");
-
-    return res.send(profile);
-  } catch (e) {
-    return res.status(500).send({ Error: e.message });
+      return res.send(profile);
+    } catch (e) {
+      return res.status(500).send({ Error: e.message });
+    }
   }
-});
+);
 
 router.delete("/", auth, async (req, res) => {
   try {
