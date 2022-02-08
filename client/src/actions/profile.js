@@ -19,7 +19,7 @@ export const getCurrentProfile = () => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: e.response.statusText, status: e.response.status },
+      payload: e,
     });
   }
 };
@@ -36,7 +36,7 @@ export const getProfiles = () => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: e.response.statusText, status: e.response.status },
+      payload: e,
     });
   }
 };
@@ -52,7 +52,7 @@ export const getProfileById = (userId) => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: e.response.statusText, status: e.response.status },
+      payload: e,
     });
   }
 };
@@ -78,7 +78,7 @@ export const createProfile =
 
       dispatch({
         type: PROFILE_ERROR,
-        payload: { msg: e.response.statusText, status: e.response.status },
+        payload: e,
       });
     }
   };
@@ -95,7 +95,7 @@ export const deleteAccount = () => async (dispatch) => {
     } catch (e) {
       dispatch({
         type: PROFILE_ERROR,
-        payload: { msg: e.response.statusText, status: e.response.status },
+        payload: e,
       });
     }
   }

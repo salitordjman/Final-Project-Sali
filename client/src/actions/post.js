@@ -21,7 +21,7 @@ export const getPosts = () => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: e.response.statusText, status: e.response.status },
+      payload: e,
     });
   }
 };
@@ -37,7 +37,7 @@ export const addLike = (id) => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: e.response.statusText, status: e.response.status },
+      payload: e,
     });
   }
 };
@@ -53,7 +53,7 @@ export const removeLike = (id) => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: e.response.statusText, status: e.response.status },
+      payload: e,
     });
   }
 };
@@ -71,7 +71,7 @@ export const deletePost = (id) => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: e.response.statusText, status: e.response.status },
+      payload: e,
     });
   }
 };
@@ -89,7 +89,7 @@ export const addPost = (formData) => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: e.response.statusText, status: e.response.status },
+      payload: e,
     });
   }
 };
@@ -105,7 +105,7 @@ export const getPost = (id) => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: e.response.statusText, status: e.response.status },
+      payload: e,
     });
   }
 };
@@ -123,7 +123,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: e.response.statusText, status: e.response.status },
+      payload: e,
     });
   }
 };
@@ -141,7 +141,7 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
   } catch (e) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: e.response.statusText, status: e.response.status },
+      payload: e,
     });
   }
 };
