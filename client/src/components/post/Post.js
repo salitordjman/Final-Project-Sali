@@ -11,7 +11,7 @@ import { getPost } from "../../actions/post";
 const Post = ({ getPost, post: { post, loading } }) => {
   const { id } = useParams();
   useEffect(() => {
-    getPost(id);
+    if (id) getPost(id);
   }, [getPost, id]);
 
   return loading || post === null ? (

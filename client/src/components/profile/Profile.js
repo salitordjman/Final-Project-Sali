@@ -10,7 +10,7 @@ import { getProfileById } from "../../actions/profile";
 const Profile = ({ getProfileById, profile: { profile }, auth }) => {
   const { id } = useParams();
   useEffect(() => {
-    getProfileById(id);
+    if (id) getProfileById(id);
   }, [getProfileById, id]);
 
   return (
