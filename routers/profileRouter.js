@@ -39,6 +39,7 @@ router.post("/", auth, async (req, res) => {
     ...rest
   } = req.body;
   const profileFields = {
+    //!
     user: req.user.id,
     hobbies: Array.isArray(hobbies)
       ? hobbies
@@ -56,6 +57,7 @@ router.post("/", auth, async (req, res) => {
   for (const [key, value] of Object.entries(socialFields)) {
     if (value && value.length > 0)
       socialFields[key] = normalize(value, { forceHttps: true });
+    // socialFields[key] = value;
   }
 
   profileFields.social = socialFields;

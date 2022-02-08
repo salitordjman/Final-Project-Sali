@@ -6,13 +6,15 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 router.post("/", async (req, res) => {
-  const newUser = new userDetails(req.body);
   try {
+    const { email } = req.body;
+
     const checkUser = await userDetails.findOne({ email });
 
     if (checkUser) {
       return res.status(400).send("User already exists");
     }
+    const newUser = new userDetails(req.body);
     const salt = await bcrypt.genSalt(10);
     newUser.password = await bcrypt.hash(newUser.password, salt);
     await newUser.save();
