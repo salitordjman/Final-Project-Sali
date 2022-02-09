@@ -5,7 +5,7 @@ const userDetails = require("../models/userDetails");
 const postDetails = require("../models/postDetails");
 const checkObjectId = require("../middleware/checkObjectId");
 
-router.post("/", auth, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const user = await userDetails.findById(req.user.id).select("-password");
 
@@ -110,7 +110,7 @@ router.put("/unlike/:id", auth, checkObjectId("id"), async (req, res) => {
 });
 //id-post
 
-router.post("/comment/:id", auth, checkObjectId("id"), async (req, res) => {
+router.post("/comment/:id", checkObjectId("id"), async (req, res) => {
   try {
     const user = await userDetails.findById(req.user.id).select("-password");
     const post = await postDetails.findById(req.params.id);

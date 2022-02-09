@@ -27,7 +27,7 @@ router.get("/me", auth, async (req, res) => {
   }
 });
 
-router.post("/", auth, async (req, res) => {
+router.post("/", async (req, res) => {
   const {
     hobbies,
     youtube,
