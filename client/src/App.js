@@ -42,8 +42,16 @@ const App = () => {
           <Route path="register" element={<Register />} />
 
           <Route path="login" element={<Login />} />
-          <Route path="profiles" element={<Profiles />} />
-          <Route path="profile/:id" element={<Profile />} />
+          <Route
+            path="profiles"
+            element={<PrivateRoute component={Profiles} />}
+          />
+          <Route
+            path="profile/:id"
+            element={<PrivateRoute component={Profile} />}
+          />
+          {/* <Route path="profiles" element={<Profiles />} />
+          <Route path="profile/:id" element={<Profile />} /> */}
           <Route
             path="settings"
             element={<PrivateRoute component={Settings} />}

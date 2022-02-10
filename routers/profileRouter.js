@@ -39,7 +39,6 @@ router.post("/", auth, async (req, res) => {
     ...rest
   } = req.body;
   const profileFields = {
-    //!
     user: req.user.id,
     hobbies: Array.isArray(hobbies)
       ? hobbies
