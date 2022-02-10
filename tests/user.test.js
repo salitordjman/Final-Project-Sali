@@ -7,6 +7,8 @@
 // const profileDetails = require("../models/profileDetails");
 // const postDetails = require("../models/postDetails");
 
+test("Test", () => {});
+
 // const idUserOne = new mongoose.Types.ObjectId();
 // let tokenUserOne = "";
 // let idPostUserOne = "";

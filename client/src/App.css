@@ -100,11 +100,6 @@ textarea {
   outline: none;
 }
 
-.profiles {
-  display: flex;
-  flex-wrap: wrap;
-  min-width: 420px;
-}
 .border-gold {
   border: rgba(0, 0, 0, 0.747) solid 1px;
   border-radius: 1rem;
