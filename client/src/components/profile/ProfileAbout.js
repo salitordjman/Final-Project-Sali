@@ -8,7 +8,7 @@ const ProfileAbout = ({
     user: { name },
   },
 }) => (
-  <div className="profile-about border-gold">
+  <div className="profile-about border-gold" style={{ padding: "1rem 0" }}>
     {bio && (
       <>
         <h2>{name.trim().split(" ")[0]}s Bio</h2>

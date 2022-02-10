@@ -1,318 +1,404 @@
-const keys = require("../config/keys");
-process.env.MONGO_URL = `mongodb+srv://salitor:${keys.password}@salitur.xfafu.mongodb.net/final-project-sali-test?retryWrites=true&w=majority`;
-const request = require("supertest");
-const mongoose = require("mongoose");
-const app = require("../app");
-const userDetails = require("../models/userDetails");
+// const keys = require("../config/keys");
+// process.env.MONGO_URL = `mongodb+srv://salitor:${keys.password}@salitur.xfafu.mongodb.net/final-project-sali-test?retryWrites=true&w=majority`;
+// const request = require("supertest");
+// const mongoose = require("mongoose");
+// const app = require("../app");
+// const userDetails = require("../models/userDetails");
+// const profileDetails = require("../models/profileDetails");
+// const postDetails = require("../models/postDetails");
 
-const userOneId = new mongoose.Types.ObjectId();
-const userOne = {
-  _id: userOneId,
-  name: "Jon",
-  email: "jon@gmail.com",
-  password: 123456,
-};
-// const userTwoId = new mongoose.Types.ObjectId();
-// const userTwo = {
-//   _id: userTwoId,
-//   name: "Bon",
-//   passportId: 123859720,
-//   credit: 1000,
+// const idUserOne = new mongoose.Types.ObjectId();
+// let tokenUserOne = "";
+// let idPostUserOne = "";
+// let idProfileUserOne = "";
+// let idCommentUserOne = "";
+// const userOne = {
+//   _id: idUserOne,
+//   name: "Jon",
+//   email: "jon@gmail.com",
+//   password: 123456,
 // };
 
-// beforeEach(async () => {
-beforeAll(async () => {
-  await userDetails.deleteMany();
-  // await new userDetails(userOne).save();
-  // await new userDetails(userTwo).save();
-});
-
-// test("Should show all users", async () => {
-//   await request(app).get("/api/profile").send({}).expect(200);
-// });
-// test("Should show userOne", async () => {
-//   await request(app).get(`/api/users/${userOneId}`).send().expect(201);
+// beforeAll(async () => {
+//   await userDetails.deleteMany();
+//   await profileDetails.deleteMany();
+//   await postDetails.deleteMany();
 // });
 
-// test("Fail show userOne", async () => {
-//   await request(app).get(`/api/users/${userOneId}45`).send().expect(500);
+// test("Register", async () => {
+//   await request(app).post("/api/user").send(userOne).expect(201);
+//   const user1 = await userDetails.findById(idUserOne);
+//   expect(user1.name).toBe(userOne.name);
+//   expect(user1._id.toString()).toBe(idUserOne.toString());
+//   expect(user1.email).toBe(userOne.email);
 // });
-
-test("Register", async () => {
-  await request(app).post("/api/user").send(userOne).expect(201);
-});
-test("Fail-Register-same-mail", async () => {
-  await request(app).post("/api/user").send(userOne).expect(400);
-});
-test("Fail-Register-no-mail", async () => {
-  await request(app)
-    .post("/api/user")
-    .send({
-      name: "aaa",
-      email: "",
-      password: 123456,
-    })
-    .expect(500);
-});
-test("Fail-Register-no-invalid-mail", async () => {
-  await request(app)
-    .post("/api/user")
-    .send({
-      name: "aaa",
-      email: "aaa",
-      password: 123456,
-    })
-    .expect(500);
-});
-test("Fail-Register-short-name", async () => {
-  await request(app)
-    .post("/api/user")
-    .send({
-      name: "a",
-      email: "ccc@gmail.com",
-      password: 123456,
-    })
-    .expect(500);
-});
-test("Fail-Register-no-name", async () => {
-  await request(app)
-    .post("/api/user")
-    .send({
-      name: "",
-      email: "ccc@gmail.com",
-      password: 123456,
-    })
-    .expect(500);
-});
-
-// test("Fail-Add new user- No ID", async () => {
+// test("Fail-Register-same-mail", async () => {
+//   await request(app).post("/api/user").send(userOne).expect(400);
+// });
+// test("Fail-Register-no-mail", async () => {
 //   await request(app)
-//     .post("/api/users")
+//     .post("/api/user")
 //     .send({
-//       name: "zyhtxz",
+//       name: "aaa",
+//       email: "",
+//       password: 123456,
 //     })
+//     .expect(500);
+// });
+// test("Fail-Register-no-invalid-mail", async () => {
+//   await request(app)
+//     .post("/api/user")
+//     .send({
+//       name: "aaa",
+//       email: "aaa",
+//       password: 123456,
+//     })
+//     .expect(500);
+// });
+// test("Fail-Register-short-name", async () => {
+//   await request(app)
+//     .post("/api/user")
+//     .send({
+//       name: "a",
+//       email: "ccc@gmail.com",
+//       password: 123456,
+//     })
+//     .expect(500);
+// });
+// test("Fail-Register-no-name", async () => {
+//   await request(app)
+//     .post("/api/user")
+//     .send({
+//       name: "",
+//       email: "ccc@gmail.com",
+//       password: 123456,
+//     })
+//     .expect(500);
+// });
+
+// test("Login-userone", async () => {
+//   const token = await request(app)
+//     .post("/api/auth")
+//     .send({ email: "jon@gmail.com", password: "123456" })
+//     .expect(201);
+//   tokenUserOne = token._body.token;
+// });
+
+// test("Fail-wrong password-Login-userone", async () => {
+//   await request(app)
+//     .post("/api/auth")
+//     .send({ email: "jon@gmail.com", password: "1111156" })
+//     .expect(400);
+// });
+// test("Fail-wrong email-Login-userone", async () => {
+//   await request(app)
+//     .post("/api/auth")
+//     .send({ email: "ddd@gmail.com", password: "123456" })
 //     .expect(400);
 // });
 
-// test("Fail-Add new user- Short ID", async () => {
-//   await request(app)
-//     .post("/api/users")
-//     .send({
-//       name: "ztxz",
-//       passportId: "682",
-//     })
-//     .expect(400);
+// test("Auth-userone", async () => {
+//   const auth = await request(app)
+//     .get("/api/auth")
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send()
+//     .expect(200);
+
+//   expect(auth._body.name).toBe(userOne.name);
+//   expect(auth._body._id).toBe(idUserOne.toString());
+//   expect(auth._body.email).toBe(userOne.email);
 // });
 
-// test("Fail-Add new user- Longest ID", async () => {
-//   await request(app)
-//     .post("/api/users")
-//     .send({
-//       name: "dfghgdfg",
-//       passportId: "684564565659592",
+// test("Fail-no token-Auth-userone", async () => {
+//   const auth = await request(app)
+//     .get("/api/auth")
+//     .set({
+//       "x-auth-token": "",
 //     })
-//     .expect(400);
+//     .send()
+//     .expect(401);
 // });
 
-// test("Fail-Add new user- No name", async () => {
-//   await request(app)
-//     .post("/api/users")
+// test("new/edit profile-userone", async () => {
+//   const newEdit = await request(app)
+//     .post("/api/profile")
+//     .set({ "x-auth-token": tokenUserOne })
 //     .send({
-//       passportId: "548456785",
-//     })
-//     .expect(400);
-// });
-
-// test("Fail-Add new user- short name", async () => {
-//   await request(app)
-//     .post("/api/users")
-//     .send({
-//       name: "z",
-//       passportId: "467575757",
-//     })
-//     .expect(400);
-// });
-
-// test("Should Update deposit userOne", async () => {
-//   const response = await request(app)
-//     .patch(`/api/users/deposit/${userOneId}`)
-//     .send({
-//       deposit: 1000,
+//       birthday: "1999-04-09",
+//       status: "ggggfgfgggggdhd",
+//       hobbies: "fvgd,dsfvd",
+//       bio: "ggdfg",
+//       facebook: "https://facebook.com/daft",
 //     })
 //     .expect(200);
-//   const userOneDetails = await userDetails.findById(userOneId);
-//   console.log(userOneDetails);
-//   expect(response.body.cash).toBe(userOneDetails.cash);
-//   expect(userOneDetails.credit).toBe(0);
-//   const userTwoDetails = await userDetails.findById(userTwoId);
-//   expect(userTwoDetails.cash).toBe(0);
+//   const user1 = await profileDetails.findById(newEdit._body._id);
+
+//   expect(newEdit._body.name).toBe(user1.name);
+//   expect(newEdit._body._id).toBe(user1._id.toString());
+//   expect(newEdit._body.user).toBe(user1.user.toString());
+//   expect(newEdit._body.email).toBe(user1.email);
+//   expect(newEdit._body.social.facebook).toBe(user1.social.facebook);
+//   expect(newEdit._body.bio).toBe(user1.bio);
+//   expect(newEdit._body.hobbies).toStrictEqual(user1.hobbies);
+//   expect(newEdit._body.status).toBe(user1.status);
+//   idProfileUserOne = newEdit._body._id;
 // });
 
-// test("Fail- Minus-Update deposit userOne", async () => {
-//   await request(app)
-//     .patch(`/api/users/deposit/${userOneId}`)
-//     .send({
-//       deposit: -100,
-//     })
-//     .expect(401);
+// test("Login by token-userone", async () => {
+//   const login = await request(app)
+//     .get("/api/profile/me")
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send()
+//     .expect(200);
+//   expect(login._body.user._id).toBe(idUserOne.toString());
 // });
 
-// test("Fail-Not-found Update deposit userTwo", async () => {
-//   await request(app)
-//     .patch(`/api/users/deposit/${userTwoId}4`)
+// test("Login by ID-userone", async () => {
+//   const login = await request(app)
+//     .get(`/api/profile/user/${idUserOne.toString()}`)
+//     .send()
+//     .expect(200);
+//   expect(login._body.user._id).toBe(idUserOne.toString());
+// });
+
+// test("get all profile", async () => {
+//   const login = await request(app).get("/api/profile").send().expect(200);
+//   expect(login._body[0]._id).toBe(idProfileUserOne);
+//   expect(login._body[0].user._id).toBe(idUserOne.toString());
+//   expect(login._body[1]).toBe(undefined);
+//   expect(login._body.length).toBe(1);
+// });
+
+// test("new post1-userone", async () => {
+//   const newPost = await request(app)
+//     .post("/api/posts")
+//     .set({ "x-auth-token": tokenUserOne })
 //     .send({
-//       deposit: 1000,
+//       text: "aavvfvfvffvfvfa bbb ccc",
 //     })
+//     .expect(200);
+//   const user1 = await postDetails.findById(newPost._body._id);
+
+//   expect(newPost._body.name).toBe(user1.name);
+//   expect(newPost._body._id).toBe(user1._id.toString());
+//   expect(newPost._body.user).toBe(user1.user.toString());
+//   expect(newPost._body.text).toBe(user1.text);
+//   idPostUserOne = newPost._body._id;
+// });
+
+// test("new post2-userone", async () => {
+//   await request(app)
+//     .post("/api/posts")
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send({
+//       text: "eeeeeeeeeeeeeee",
+//     })
+//     .expect(200);
+// });
+
+// test("get all posts-userOne", async () => {
+//   const all = await request(app)
+//     .get("/api/posts")
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send()
+//     .expect(200);
+//   expect(all._body[1]._id).toBe(idPostUserOne);
+//   expect(all._body[0].user).toBe(idUserOne.toString());
+//   expect(all._body[1].user).toBe(idUserOne.toString());
+//   expect(all._body[2]).toBe(undefined);
+//   expect(all._body.length).toBe(2);
+// });
+
+// test("Fail-no Token-get all posts-userOne", async () => {
+//   await request(app).get("/api/posts").send().expect(401);
+// });
+
+// test("get post by id-userOne", async () => {
+//   const post = await request(app)
+//     .get(`/api/posts/${idPostUserOne}`)
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send()
+//     .expect(200);
+//   expect(post._body._id).toBe(idPostUserOne);
+//   expect(post._body.user).toBe(idUserOne.toString());
+// });
+
+// test("put Like on post -userOne", async () => {
+//   const like = await request(app)
+//     .put(`/api/posts/like/${idPostUserOne}`)
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send()
+//     .expect(200);
+
+//   expect(like._body[0].user).toBe(idUserOne.toString());
+//   expect(like._body.length).toBe(1);
+// });
+
+// test("Fail-put again Like on post -userOne", async () => {
+//   const like = await request(app)
+//     .put(`/api/posts/like/${idPostUserOne}`)
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send()
 //     .expect(400);
+//   expect(like._body).toBe(undefined);
 // });
 
-// test("Should Update credit userOne", async () => {
-//   const response = await request(app)
-//     .patch(`/api/users/credit/${userOneId}`)
+// test("put UnLike on post -userOne", async () => {
+//   const like = await request(app)
+//     .put(`/api/posts/unlike/${idPostUserOne}`)
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send()
+//     .expect(200);
+//   expect(like._body.length).toBe(0);
+// });
+
+// test("Fail-put again UnLike on post -userOne", async () => {
+//   const like = await request(app)
+//     .put(`/api/posts/unlike/${idPostUserOne}`)
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send()
+//     .expect(400);
+//   expect(like._body).toBe(undefined);
+// });
+
+// test("post comment1 on post -userOne", async () => {
+//   const comment = await request(app)
+//     .post(`/api/posts/comment/${idPostUserOne}`)
+//     .set({ "x-auth-token": tokenUserOne })
 //     .send({
-//       credit: 500,
+//       text: "aaaaa fghfg fgg gghfgf hj",
 //     })
 //     .expect(200);
-//   const userOneDetails = await userDetails.findById(userOneId);
-//   expect(response.body.credit).toBe(userOneDetails.credit);
+//   expect(comment._body[0].user).toBe(idUserOne.toString());
+//   expect(comment._body.length).toBe(1);
+//   idCommentUserOne = comment._body[0]._id;
 // });
-
-// test("Should withdraw userTwo", async () => {
-//   const response = await request(app)
-//     .patch(`/api/users/withdraw/${userTwoId}`)
+// test("post comment2 on post -userOne", async () => {
+//   const comment = await request(app)
+//     .post(`/api/posts/comment/${idPostUserOne}`)
+//     .set({ "x-auth-token": tokenUserOne })
 //     .send({
-//       withdraw: 200,
+//       text: "cccccccc ccccc",
 //     })
 //     .expect(200);
-//   const userTwoDetails = await userDetails.findById(userTwoId);
-//   expect(response.body.credit).toBe(userTwoDetails.credit);
-//   expect(response.body.credit).toBe(800);
-//   expect(response.body.cash).toBe(0);
+//   expect(comment._body[0].user).toBe(idUserOne.toString());
+//   expect(comment._body[1]._id).toBe(idCommentUserOne);
+//   expect(comment._body[1].user).toBe(idUserOne.toString());
+//   expect(comment._body.length).toBe(2);
 // });
 
-// test("Fail- Minus-Should withdraw userTwo", async () => {
-//   await request(app)
-//     .patch(`/api/users/withdraw/${userTwoId}`)
+// test("Fail- no token-post comment on post -userOne", async () => {
+//   const comment = await request(app)
+//     .post(`/api/posts/comment/${idPostUserOne}`)
 //     .send({
-//       withdraw: -200,
+//       text: "cccccccc ccccc",
 //     })
 //     .expect(401);
+//   expect(comment._body).toBe(undefined);
+// });
+// test("Fail- no id-post comment on post -userOne", async () => {
+//   const comment = await request(app)
+//     .post("/api/posts/comment")
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send({
+//       text: "cccccccc ccccc",
+//     })
+//     .expect(404);
+//   expect(comment._body).toBe(undefined);
 // });
 
-// test("Partial sucsses- Not Enough Money- withdraw userTwo", async () => {
-//   await request(app)
-//     .patch(`/api/users/withdraw/${userTwoId}`)
-//     .send({
-//       withdraw: 2000,
-//     })
-//     .expect(205);
+// test("Fail- no text-post comment on post -userOne", async () => {
+//   const comment = await request(app)
+//     .post(`/api/posts/comment/${idPostUserOne}`)
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send()
+//     .expect(500);
 // });
-// test("Fail- Not have Money- withdraw userOne", async () => {
-//   await request(app)
-//     .patch(`/api/users/withdraw/${userOneId}`)
-//     .send({
-//       withdraw: 100,
-//     })
+
+// test("Fail-no token- Delete-comment on post -userOne", async () => {
+//   const comment = await request(app)
+//     .delete(`/api/posts/comment/${idPostUserOne}/${idCommentUserOne}`)
+//     .send()
 //     .expect(401);
+//   expect(comment._body).toBe(undefined);
 // });
 
-// test("Should transferring from userTwo to userOne", async () => {
+// test("Fail-no id post- Delete-comment on post -userOne", async () => {
 //   await request(app)
-//     .patch(`/api/users/transferring/${userTwoId}`)
-//     .send({
-//       transferring: 300,
-//       toID: userOneId,
-//     })
-//     .expect(200);
-//   const userTwoDetails = await userDetails.findById(userTwoId);
-//   const userOneDetails = await userDetails.findById(userOneId);
-//   expect(userTwoDetails.credit).toBe(700);
-//   expect(userOneDetails.cash).toBe(300);
-//   expect(userOneDetails.credit).toBe(0);
-// });
-
-// test("Fail- Minus-Should transferring from userTwo to userOne", async () => {
-//   await request(app)
-//     .patch(`/api/users/transferring/${userTwoId}`)
-//     .send({
-//       transferring: -300,
-//       toID: userOneId,
-//     })
-//     .expect(401);
-// });
-
-// test("Partial sucsses- Not Enough Money-Should transferring from userTwo to userOne", async () => {
-//   await request(app)
-//     .patch(`/api/users/transferring/${userTwoId}`)
-//     .send({
-//       transferring: 3000,
-//       toID: userOneId,
-//     })
-//     .expect(205);
-//   const userTwoDetails = await userDetails.findById(userTwoId);
-//   const userOneDetails = await userDetails.findById(userOneId);
-//   expect(userTwoDetails.credit).toBe(0);
-//   expect(userTwoDetails.cash).toBe(0);
-//   expect(userOneDetails.cash).toBe(1000);
-//   expect(userOneDetails.credit).toBe(0);
-// });
-
-// test("Fail- Not have Money-Should transferring from userOne to userTwo", async () => {
-//   await request(app)
-//     .patch(`/api/users/transferring/${userOneId}`)
-//     .send({
-//       transferring: 7,
-//       toID: userTwoId,
-//     })
-//     .expect(401);
-// });
-
-// test("Fail- not found user One-Should transferring from userOne to userTwo", async () => {
-//   await request(app)
-//     .patch(`/api/users/transferring/${new mongoose.Types.ObjectId()}`)
-//     .send({
-//       transferring: 7,
-//       toID: userTwoId,
-//     })
+//     .delete(`/api/posts/comment//${idCommentUserOne}`)
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send()
 //     .expect(404);
 // });
 
-// test("Fail- not found user To-Should transferring from userOne to userTwo", async () => {
-//   await request(app)
-//     .patch(`/api/users/transferring/${userOneId}`)
-//     .send({
-//       transferring: 7,
-//       toID: new mongoose.Types.ObjectId(),
-//     })
+// test("Fail-wrong id post- Delete-comment on post -userOne", async () => {
+//   const comment = await request(app)
+//     .delete(`/api/posts/comment/ghjg7jguyjghj67/${idCommentUserOne}`)
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send()
+//     .expect(500);
+// });
+
+// test("Fail-no id comment- Delete-comment on post -userOne", async () => {
+//   const comment = await request(app)
+//     .delete(`/api/posts/comment/${idPostUserOne}`)
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send()
 //     .expect(404);
+//   expect(comment._body).toBe(undefined);
 // });
 
-// test("Should Delete userOne", async () => {
-//   const response = await request(app)
-//     .delete(`/api/users/delete/${userOneId}`)
+// test("Fail-wrong id comment- Delete-comment on post -userOne", async () => {
+//   const comment = await request(app)
+//     .delete(`/api/posts/comment/${idPostUserOne}/fhfhfh654rtbf5gbgb`)
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send()
+//     .expect(404);
+//   expect(comment._body).toBe(undefined);
+// });
+
+// test("Fail-no id - Delete-comment on post -userOne", async () => {
+//   await request(app)
+//     .delete(`/api/posts/comment`)
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send()
+//     .expect(400);
+// });
+
+// test("Delete-comment on post -userOne", async () => {
+//   const comment = await request(app)
+//     .delete(`/api/posts/comment/${idPostUserOne}/${idCommentUserOne}`)
+//     .set({ "x-auth-token": tokenUserOne })
 //     .send()
 //     .expect(200);
-//   const users = await userDetails.find();
-//   const userOneDetails = await userDetails.findById(userOneId);
-
-//   expect(response.body).toEqual({});
-//   expect(userOneDetails).toBe(null);
-//   expect(users).not.toEqual({});
+//   expect(comment._body.length).toBe(1);
 // });
 
-// test("Should Delete all users", async () => {
-//   const response = await request(app)
-//     .delete("/api/users/delete")
+// test("delete post by id-userOne", async () => {
+//   const post = await request(app)
+//     .delete(`/api/posts/${idPostUserOne}`)
+//     .set({ "x-auth-token": tokenUserOne })
 //     .send()
 //     .expect(200);
-//   const users = await userDetails.find();
-//   const userTwoDetails = await userDetails.findById(userTwoId);
-//   const userOneDetails = await userDetails.findById(userOneId);
-
-//   expect(response.body).toEqual({});
-//   expect(userOneDetails).toBeNull();
-//   expect(userTwoDetails).toBeNull();
-//   //   expect(userOneDetails).toBe(null);
-//   //   expect(userTwoDetails).toBe(null);
-//   expect(users).toEqual([]);
+//   expect(post._body).toBe(undefined);
 // });
+
+// test("delete user by token-userOne", async () => {
+//   const login = await request(app)
+//     .delete("/api/profile")
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send()
+//     .expect(200);
+//   expect(login._body).toBe(undefined);
+// });
+
+// test("Fail- after delete userOne-new post-userone", async () => {
+//   await request(app)
+//     .post("/api/posts")
+//     .set({ "x-auth-token": tokenUserOne })
+//     .send({
+//       text: "eeeeeeeeeeeeeee",
+//     })
+//     .expect(500);
+// });
+// //!npm test (- to start)

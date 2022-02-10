@@ -14,7 +14,7 @@ const ProfileTop = ({
   },
 }) => {
   return (
-    <div className="profile-top border-gold">
+    <div className="profile-top border-gold" style={{ paddingTop: "1rem" }}>
       {/* <img src={picture} alt="" /> */}
       <h1>{name}</h1>
       <p>{status}</p>

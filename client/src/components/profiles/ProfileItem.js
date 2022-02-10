@@ -21,13 +21,13 @@ const ProfileItem = ({
         <p>{status}</p>
         <p>Birthday: {formatDate(birthday)}</p>
         <p>{location && <span>Location: {location}</span>}</p>
-        <Link to={`/profile/${_id}`}>View Profile</Link>
       </div>
       <ul>
         Hobbies:
         {hobbies.slice(0, 4).map((hobb, index) => (
           <li key={index}>{hobb}</li>
         ))}
+        <Link to={`/profile/${_id}`}>View Profile</Link>
       </ul>
     </div>
   );
