@@ -5,7 +5,7 @@ import { LOGOUT } from "../actions/types";
 let myUrl = "http://localhost:5000/api/"; //development
 
 if (process.env.NODE_ENV === "production") {
-  myUrl = "api";
+  myUrl = "/api";
 }
 const myApi = axios.create({
   baseURL: myUrl,
