@@ -7,7 +7,7 @@ const ProfileSchema = new mongoose.Schema({
   },
   birthday: {
     type: Date,
-    required: true,
+    // required: true,
   },
   location: {
     type: String,
