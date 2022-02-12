@@ -13,14 +13,18 @@ const ProfileItem = ({
 }) => {
   return (
     <div className="profile border-gold">
-      <img src={`data:image/*;base64,${picture}`} alt="" />
-      <div>
+      <img
+        className="profile-img"
+        src={`data:image/*;base64,${picture}`}
+        alt=""
+      />
+      <div className="profile-details-small">
         <h2>{name}</h2>
         <p>{status}</p>
         <p>Birthday: {formatDate(birthday)}</p>
         <p>{location && <span>Location: {location}</span>}</p>
       </div>
-      <ul>
+      <ul className="profile-ul-small">
         Hobbies:
         {hobbies.slice(0, 4).map((hobb, index) => (
           <li key={index}>{hobb}</li>

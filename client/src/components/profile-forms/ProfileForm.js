@@ -77,8 +77,8 @@ const ProfileForm = ({
       <h1>{creatingProfile ? "Create Your Profile" : "Edit Your Profile"}</h1>
       <h3>
         {creatingProfile
-          ? ` Let's get some information to make your profile`
-          : " Add some changes to your profile"}
+          ? ` Write some information to make your profile`
+          : " Make some changes to your profile"}
       </h3>
       <p>* required field</p>
       <form onSubmit={onSubmit}>

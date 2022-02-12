@@ -9,13 +9,16 @@ const ProfileTop = ({
     location,
     social,
     education,
-    user: { name },
-    // user: { name, picture },
+    user: { name, picture },
   },
 }) => {
   return (
     <div className="profile-top border-gold" style={{ paddingTop: "1rem" }}>
-      {/* <img src={picture} alt="" /> */}
+      <img
+        className="my-profile"
+        src={`data:image/*;base64,${picture}`}
+        alt=""
+      />
       <h1>{name}</h1>
       <p>{status}</p>
       <p>Birthday: {formatDate(birthday)}</p>

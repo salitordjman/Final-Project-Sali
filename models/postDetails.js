@@ -12,9 +12,9 @@ const PostSchema = new Schema({
   name: {
     type: String,
   },
-  // picture: {
-  //   type: String,
-  // },
+  picture: {
+    type: String,
+  },
   // newPicture: {
   //   type: String,
   // },
@@ -41,9 +41,9 @@ const PostSchema = new Schema({
       name: {
         type: String,
       },
-      // picture: {
-      //   type: String,
-      // },
+      picture: {
+        type: String,
+      },
       date: {
         type: Date,
         default: Date.now,

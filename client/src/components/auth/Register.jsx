@@ -16,7 +16,6 @@ const Register = ({ register, isAuthenticated }) => {
     password: "",
     password2: "",
   });
-  // const { name, email, password, password2 } = formData;
   const { name, email, password, password2 } = formData;
   const onClickHandler = async () => {
     const data = new FormData();
@@ -27,6 +26,7 @@ const Register = ({ register, isAuthenticated }) => {
     );
 
     setFormData({ ...formData, picture: await picBuffer });
+    picBuffer && alert("Image uploaded");
   };
 
   const fileUpload = (e) => {

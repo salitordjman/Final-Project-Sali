@@ -76,7 +76,7 @@ textarea {
   color: rgb(78, 78, 78);
 }
 .landing {
-  padding-top: 16rem;
+  padding-top: 5rem;
   font-size: 1.5rem;
 }
 
@@ -107,7 +107,7 @@ textarea {
 }
 .profile {
   display: grid;
-  grid-template-columns: 3fr 4fr 1fr;
+  grid-template-columns: 2fr 3fr 2fr;
   align-items: center;
   grid-gap: 1rem;
   padding: 1rem;
@@ -161,7 +161,7 @@ i:hover {
 .post {
   padding: 1rem 0 0.5rem 0;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   margin: 1rem 0;
   border-radius: 5px;
@@ -177,20 +177,66 @@ i:hover {
   font-size: 1.1rem;
   margin: 0 0.4rem;
 }
+.profile-img {
+  border-radius: 50%;
+  width: calc(5vh + 5vh + 100px);
+  margin-left: 3rem;
+}
+.my-profile {
+  border-radius: 50%;
+  width: calc(8vh + 8vh + 200px);
+}
+.post-img {
+  border-radius: 50%;
+  width: calc(2vh + 2vh + 70px);
+}
+.post-detail {
+  margin-right: 1rem;
+}
+.comment-img {
+  border-radius: 50%;
+  width: calc(1vh + 1vh + 30px);
+}
 @media (max-width: 700px) {
+  .my-profile {
+    width: calc(7vh + 7vh + 150px);
+  }
   .navbar {
     font-size: 1.1rem;
   }
   .landing {
-    padding-top: 8rem;
+    padding-top: 4rem;
     font-size: 1.2rem;
   }
   .post-textarea {
     width: 30rem;
   }
+  .profile-img {
+    width: calc(2vh + 2vh + 100px);
+    margin-left: 1rem;
+  }
 }
 
 @media (max-width: 530px) {
+  .comment-img {
+    width: calc(1vh + 1vh + 20px);
+  }
+  .post-img {
+    width: calc(1vh + 1vh + 70px);
+  }
+  .my-profile {
+    width: calc(6vh + 6vh + 100px);
+  }
+  .profile {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .profile-img {
+    margin: 0 5rem;
+  }
+  .profile-details-small {
+    margin: 0 1rem;
+  }
   .navbar {
     font-size: 0.8rem;
   }
@@ -202,6 +248,21 @@ i:hover {
   }
 }
 @media (max-width: 385px) {
+  .post-img {
+    width: calc(1vh + 1vh + 40px);
+  }
+  .my-profile {
+    width: calc(5vh + 5vh + 90px);
+  }
+  .profile-ul-small {
+    margin: 0 3rem;
+  }
+  .profile-img {
+    margin: 0 calc(2vh + 2vw);
+  }
+  .profile-details-small {
+    margin-left: 3rem;
+  }
   input,
   select,
   textarea {

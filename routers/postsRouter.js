@@ -14,7 +14,7 @@ router.post("/", auth, async (req, res) => {
       // newPicture: req.body.newPicture,
       // link: req.body.link,
       name: user.name,
-      // picture: user.picture,
+      picture: user.picture,
       user: req.user.id,
     });
 
@@ -120,12 +120,11 @@ router.post("/comment/:id", auth, checkObjectId("id"), async (req, res) => {
     const newComment = {
       text: req.body.text,
       name: user.name,
-      // picture: user.picture,
+      picture: user.picture,
       user: req.user.id,
     };
 
     post.comments.unshift(newComment);
-
     await post.save();
     res.status(200).send(post.comments);
   } catch (e) {
