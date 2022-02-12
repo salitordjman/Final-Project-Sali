@@ -4,21 +4,28 @@ import { connect } from "react-redux";
 import PostItem from "./PostItem";
 import PostForm from "./PostForm";
 import { getPosts } from "../../actions/post";
+import Spinner from "../layout/Spinner";
 
-const Posts = ({ getPosts, post: { posts } }) => {
+const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
   return (
     <section className="container">
-      <h1>Posts</h1>
-      <PostForm />
-      <div>
-        {posts.map((post) => (
-          <PostItem key={post._id} post={post} />
-        ))}
-      </div>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <h1>Posts</h1>
+          <PostForm />
+          <div>
+            {posts.map((post) => (
+              <PostItem key={post._id} post={post} />
+            ))}
+          </div>
+        </>
+      )}
     </section>
   );
 };
