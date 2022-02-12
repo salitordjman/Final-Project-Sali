@@ -13,8 +13,9 @@ const Landing = ({ isAuthenticated }) => {
       <div>
         <div>
           <h1>RhinoNet</h1>
-          <h3>
-            Collaborative social network, let's start sharing your creativity
+          <h2>Collaborative social network</h2>
+          <h3 style={{ margin: "1rem 0" }}>
+            Let's start sharing your creativity
           </h3>
           <h2>
             <Link to="/register">Sign Up</Link>

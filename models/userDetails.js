@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
   },
   picture: {
     type: String,
-    required: true,
+    // required: true,
   },
   Date: {
     type: Date,

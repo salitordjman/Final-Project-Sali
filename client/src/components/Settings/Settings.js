@@ -19,11 +19,15 @@ const Settings = ({
     <section className="landing">
       <h1>Settings</h1>
       <h3>Hello {user && user.name}</h3>
-      <img
-        className="my-profile"
-        src={`data:image/*;base64,${user.picture}`}
-        alt=""
-      />
+      {user != null
+        ? user.picture && (
+            <img
+              className="my-profile"
+              src={`data:image/*;base64,${user.picture}`}
+              alt=""
+            />
+          )
+        : ""}
       {profile !== null ? (
         <>
           <SettingsActions />

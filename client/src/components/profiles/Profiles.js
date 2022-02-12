@@ -17,6 +17,11 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         <div>
           <h1>Profiles</h1>
           <div>
+            {profiles.map((profile) => (
+              <ProfileItem key={profile._id} profile={profile} />
+            ))}
+          </div>
+          {/* <div>
             {profiles.length > 0 ? (
               profiles.map((profile) => (
                 <ProfileItem key={profile._id} profile={profile} />
@@ -24,7 +29,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
             ) : (
               <h2>No profiles found...</h2>
             )}
-          </div>
+          </div> */}
         </div>
       )}
     </section>

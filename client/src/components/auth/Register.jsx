@@ -61,7 +61,7 @@ const Register = ({ register, isAuthenticated }) => {
     <section className="container">
       <h1>Sign Up</h1>
       <div>
-        <h3>*required*- Upload profile picture</h3>
+        <h3>Upload profile picture</h3>
         <input type="file" name="picture" onChange={(e) => fileUpload(e)} />
         <div>
           <button
