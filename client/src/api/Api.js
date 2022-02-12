@@ -9,9 +9,9 @@ if (process.env.NODE_ENV === "production") {
 }
 const myApi = axios.create({
   baseURL: myUrl,
-  headers: {
-    "Content-Type": "application/json",
-  },
+  // headers: {
+  //   "Content-Type": "application/json",
+  // },
 });
 
 myApi.interceptors.response.use(

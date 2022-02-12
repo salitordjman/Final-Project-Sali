@@ -1,24 +1,43 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
-// import myApi from "../../api/Api";
+import myApi from "../../api/Api";
 import { register } from "../../actions/auth";
 import PropTypes from "prop-types";
+var Buffer = require("buffer/").Buffer;
 
 const Register = ({ register, isAuthenticated }) => {
+  const [selectedFile, setSelectedFile] = useState("");
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    // picture: "",
+    picture: "",
     password: "",
     password2: "",
   });
-
+  // const { name, email, password, password2 } = formData;
   const { name, email, password, password2 } = formData;
-  // const { name, email, picture, password, password2 } = formData;
+  const onClickHandler = async () => {
+    const data = new FormData();
+    data.append("image", selectedFile);
+    const picObj = await myApi.post("/upload", data);
+    const picBuffer = await new Buffer(picObj.data.buffer.data).toString(
+      "base64"
+    );
 
-  const onChange = (e) =>
+    setFormData({ ...formData, picture: await picBuffer });
+  };
+
+  const fileUpload = (e) => {
+    e.preventDefault();
+    const file = e.target.files[0];
+    setSelectedFile(file);
+  };
+
+  const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -41,6 +60,19 @@ const Register = ({ register, isAuthenticated }) => {
   return (
     <section className="container">
       <h1>Sign Up</h1>
+      <div>
+        <h3>*required*- Upload profile picture</h3>
+        <input type="file" name="picture" onChange={(e) => fileUpload(e)} />
+        <div>
+          <button
+            className="btn"
+            style={{ background: "red" }}
+            onClick={onClickHandler}
+          >
+            Upload to Server
+          </button>
+        </div>
+      </div>
       <form onSubmit={onSubmit}>
         <div>
           <input
@@ -53,19 +85,6 @@ const Register = ({ register, isAuthenticated }) => {
             required
           />
         </div>
-        {/* <div>
-          Pick your pic
-          <input
-            type="file"
-            id="img"
-            placeholder="Picture"
-            name="picture"
-            value={picture}
-            onChange={onChange}
-            accept="image/*"
-            className="input-img"
-          />
-        </div> */}
         <div>
           <input
             type="email"

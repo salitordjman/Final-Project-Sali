@@ -26,9 +26,10 @@ const userSchema = new mongoose.Schema({
     trim: true,
     minLength: 6,
   },
-  // picture: {
-  //   type: String,
-  // },
+  picture: {
+    type: String,
+    required: true,
+  },
   Date: {
     type: Date,
     default: Date.now,

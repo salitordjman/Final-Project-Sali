@@ -2,11 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import formatDate from "../../utils/formatDate";
-
 const ProfileItem = ({
   profile: {
-    user: { _id, name },
-    // user: { _id, name, picture },
+    user: { _id, name, picture },
     status,
     birthday,
     location,
@@ -15,7 +13,7 @@ const ProfileItem = ({
 }) => {
   return (
     <div className="profile border-gold">
-      {/* <img src={picture} alt="" /> */}
+      <img src={`data:image/*;base64,${picture}`} alt="" />
       <div>
         <h2>{name}</h2>
         <p>{status}</p>

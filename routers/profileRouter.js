@@ -14,8 +14,8 @@ router.get("/me", auth, async (req, res) => {
       .findOne({
         user: req.user.id,
       })
-      .populate("user", ["name"]);
-    // .populate("user", ["name", "picture"]);
+      .populate("user", ["name", "picture"]);
+    // .populate("user", ["name"]);
 
     if (!profile) {
       return res.status(400).send("Not have a profile");
@@ -75,8 +75,10 @@ router.post("/", auth, async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const profiles = await profileDetails.find().populate("user", ["name"]);
-    // .populate("user", ["name", "picture"]);
+    const profiles = await profileDetails
+      .find()
+      .populate("user", ["name", "picture"]);
+    // .populate("user", ["name"]);
     res.status(200).send(profiles);
   } catch (e) {
     res.status(500).send({ Error: e.message });
@@ -90,8 +92,8 @@ router.get(
     try {
       const profile = await profileDetails
         .findOne({ user: user_id })
-        .populate("user", ["name"]);
-      // .populate("user", ["name", "picture"]);
+        .populate("user", ["name", "picture"]);
+      // .populate("user", ["name"]);
       if (!profile) return res.status(400).send("Not have a profile");
 
       return res.send(profile);
